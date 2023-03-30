@@ -1,14 +1,14 @@
 console.log(`Let's play Rock, Paper, Scissors!`);
 let playerChoice;                                               /*This will contain player's choice */
-let computerChoice;                                             /* This will contain computer's choice */
+let computerChoice;                                             /*This will contain computer's choice */
 
 playerSelect();
 
-function playerSelect() {
+function playerSelect() {                                       
     playerChoice = prompt("Rock, Paper, Scissors");
     playerChoice = playerChoice.toLowerCase();
 
-    if (playerChoice != "rock")  {
+    if (playerChoice != "rock" && playerChoice != "paper" && playerChoice != "scissors" && playerChoice != String)  {
         console.log(`Please pick one: rock, paper, scissors`);
     } else {
         console.log(`You picked ${playerChoice}`);
