@@ -1,19 +1,25 @@
 console.log(`Let's play Rock, Paper, Scissors!`);
 let playerSelection;                                               /*This will contain player's choice */
 let computerSelection;                                             /*This will contain computer's choice */
+let round;
+let playerScore;
+let computerScore;
 
 getPlayerChoice();
-getComputerChoice();
 
 function getPlayerChoice() {                                       
     playerSelection = prompt("Rock, Paper, Scissors");             /* ask user's input */
-    playerSelection = playerSelection.toLowerCase();
-
-    if (playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors" && playerSelection != String) { /* if statement whether a user did not put the rock, paper, scissors */
-        console.log(`Please pick one: rock, paper, scissors`);
+    if (playerSelection == null) {
+        console.log(`type: getPlayerChoice() to play the game.`)
     } else {
-        console.log(`You picked ${playerSelection}`);
-    }
+        playerSelection = playerSelection.toLowerCase();
+            if (playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors" && playerSelection != String) { /* if statement whether a user did not put the rock, paper, scissors */
+            getPlayerChoice();
+        }   else {
+            console.log(`You picked ${playerSelection}`);
+            getComputerChoice();
+        } 
+    }    
 }
 
 
@@ -22,14 +28,53 @@ function getComputerChoice() {                                  /* function that
     
     if (computerSelection === 0) {
         computerSelection = 'rock';
-        console.log("I chose rock!")
+        console.log("Computer: I choose rock!")
+        return computerSelection;
     }
     if (computerSelection === 1) {
         computerSelection = 'paper';
-        console.log("I chose paper!")
+        console.log("Computer: I choose paper!")
+        return computerSelection;
     }
     if (computerSelection === 2) {
         computerSelection = 'scissors';
-        console.log("I chose scissors!")
+        console.log("Computer: I choose scissors!")
+        return computerSelection;
     }
 }
+
+playRound(playerSelection, computerSelection);
+
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection == 'rock') {
+        if (computerSelection == 'rock') {
+            console.log('Computer: draw')
+        } else if (computerSelection == 'scissors') {
+            console.log('Computer: I lose, you win')
+        } else {
+            console.log('Computer: I win!')
+        }
+    }
+
+    if (playerSelection == 'scissors') {
+        if (computerSelection == 'rock') {
+            console.log('Computer: draw')
+        } else if (computerSelection == 'scissors') {
+            console.log('Computer: I lose, you win')
+        } else {
+            console.log('Computer: I win!')
+        }
+    }
+
+    if (playerSelection == 'paper') {
+        if (computerSelection == 'rock') {
+            console.log('Computer: draw')
+        } else if (computerSelection == 'scissors') {
+            console.log('Computer: I lose, you win')
+        } else {
+            console.log('Computer: I win!')
+        }
+    }
+
+}
+
