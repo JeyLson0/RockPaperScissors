@@ -3,7 +3,7 @@ let playerSelection;                                               /*This will c
 let computerSelection;                                             /*This will contain computer's choice */
 let playerScore = 0;
 let computerScore = 0;
-let gameLoop = 0;
+let gameLoop = 1;
 
 game()
 
@@ -11,9 +11,10 @@ function game() {
 
     getPlayerChoice();
     function getPlayerChoice() {                                       
-        playerSelection = prompt("Rock, Paper, Scissors");             /* ask user's input */
+        playerSelection = prompt(`Round ${gameLoop}:   Rock, Paper, Scissors`);             /* ask user's input */
         if (playerSelection == null) {
-            console.log(`type: getPlayerChoice() to play the game.`)
+            console.log(`type: game() to play the game.`)
+            gameLoop = gameLoop -1;
         } else {
             playerSelection = playerSelection.toLowerCase();
                 if (playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors" && playerSelection != String) { /* if statement whether a user did not put the rock, paper, scissors */
@@ -95,7 +96,11 @@ function game() {
     
     if (gameLoop < 5) {
         gameLoop += 1;
-        console.log(`type game() to play the next round ${gameLoop+1}`)
+        if (gameLoop < 5){
+            console.log(`type game() to play round ${gameLoop}`)
+        } else {
+            console.log(`type game() to play last round!`)
+        } 
     } else {
         console.log(`GAME END.`)
         console.log(`Player score: ${playerScore}`)
@@ -103,9 +108,11 @@ function game() {
 
         if (playerScore > computerScore) {
             return console.log(`Congratulations! Player won!`);
+        } else if (playerScore == computerScore) {
+            return console.log(`It's a draw! Press F5 try again!`);
         } else {
             console.log(`Game over, you lose. Try again!`);
-            console.log(`press F5 to try again!`);
+           return console.log(`press F5 to try again!`);
         }
     }
 
