@@ -1,11 +1,11 @@
 console.log(`Let's play Rock, Paper, Scissors!`);
+console.log(`Type game() to play`)
 let playerSelection;                                               /*This will contain player's choice */
 let computerSelection;                                             /*This will contain computer's choice */
 let playerScore = 0;
 let computerScore = 0;
 let gameLoop = 1;
 
-game()
 
 function game() {
 
