@@ -6,6 +6,7 @@ let playerScore = 0;
 let computerScore = 0;
 let gameLoop = 1;
 
+game()
 
 function game() {
 
@@ -20,7 +21,6 @@ function game() {
                 if (playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors" && playerSelection != String) { /* if statement whether a user did not put the rock, paper, scissors */
                 getPlayerChoice();
             }   else {
-                console.log(`You picked ${playerSelection}`);
                 getComputerChoice();
             } 
         }    
@@ -31,17 +31,14 @@ function game() {
         
         if (computerSelection === 0) {
             computerSelection = 'rock';
-            console.log("Computer: I choose rock!")
             playRound(playerSelection, computerSelection);
         }
         if (computerSelection === 1) {
             computerSelection = 'paper';
-            console.log("Computer: I choose paper!")
             playRound(playerSelection, computerSelection);
         }
         if (computerSelection === 2) {
             computerSelection = 'scissors';
-            console.log("Computer: I choose scissors!")
             playRound(playerSelection, computerSelection);
         }
     }
@@ -49,46 +46,46 @@ function game() {
     function playRound(playerSelection, computerSelection) {                            /*playRound function has two parameters. the input from playerChoice assigned a value on playerSelection. the same goes for computerChoice it creates a random value and place it on computerSelection.  */
         if (playerSelection == 'rock') {
             if (computerSelection == 'rock') {
-                console.log('Computer: draw')
-                console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
+                window.alert(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n DRAW!`)
+                window.alert(`Player: ${playerScore} vs Computer: ${computerScore}`)
             } else if (computerSelection == 'scissors') {
-                console.log('Computer: I lose, you win')
+                window.alert(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n YOU WIN!`)
                 playerScore += 1;
-                console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
+                window.alert(`Player: ${playerScore} vs Computer: ${computerScore}`)
             } else {
-                console.log('Computer: I win!')
+                window.alert(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n YOU LOSE!`)
                 computerScore += 1;
-                console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
+                window.alert(`Player: ${playerScore} vs Computer: ${computerScore}`)
             }
         }
 
         if (playerSelection == 'scissors') {
             if (computerSelection == 'scissors') {
-                console.log('Computer: draw')
-                console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
+                window.alert(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n DRAW!`)
+                window.alert(`Player: ${playerScore} vs Computer: ${computerScore}`)
             } else if (computerSelection == 'paper') {
-                console.log('Computer: I lose, you win')
+                window.alert(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n YOU WIN!`)
                 playerScore += 1;
-                console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
+                window.alert(`Player: ${playerScore} vs Computer: ${computerScore}`)
             } else {
-                console.log('Computer: I win!')
+                window.alert(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n YOU LOSE!`)
                 computerScore += 1;
-                console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
+                window.alert(`Player: ${playerScore} vs Computer: ${computerScore}`)
             }
         }
 
         if (playerSelection == 'paper') {
             if (computerSelection == 'paper') {
-                console.log('Computer: draw')
-                console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
+                window.alert(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n DRAW!`)
+                window.alert(`Player: ${playerScore} vs Computer: ${computerScore}`)
             } else if (computerSelection == 'rock') {
-                console.log('Computer: I lose, you win')
+                window.alert(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n YOU WIN!`)
                 playerScore += 1;
-                console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
+                window.alert(`Player: ${playerScore} vs Computer: ${computerScore}`)
             } else {
-                console.log('Computer: I win!')
+                window.alert(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n YOU LOSE!`)
                 computerScore += 1;
-                console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
+                window.alert(`Player: ${playerScore} vs Computer: ${computerScore}`)
             }
         }
 
@@ -97,23 +94,19 @@ function game() {
     if (gameLoop < 5) {
         gameLoop += 1;
         if (gameLoop < 5){
-            console.log(`type game() to play round ${gameLoop}`)
+            window.alert(`Round ${gameLoop}`)
+            game()
         } else {
-            console.log(`type game() to play last round!`)
+            window.alert(`Last round!`)
+            game()
         } 
     } else {
-        console.log(`GAME END.`)
-        console.log(`Player score: ${playerScore}`)
-        console.log(`Computer score: ${computerScore}`)
-
         if (playerScore > computerScore) {
-             console.log(`Congratulations! Player won!`);
-            return console.log(`press F5 to try again!`);
+            window.alert(`GAME END. \n\n Player score: ${playerScore} \n Computer score: ${computerScore} \n\n Congratulations! Player won! \n\n Press F5 to try again!`) 
         } else if (playerScore == computerScore) {
-            return console.log(`It's a draw! Press F5 try again!`);
+            window.alert(`GAME END. \n\n Player score: ${playerScore} \n Computer score: ${computerScore} \n\n It's a draw! \n\n Press F5 to try again!`)
         } else {
-            console.log(`Game over, you lose. Try again!`);
-           return console.log(`press F5 to try again!`);
+            window.alert(`GAME END. \n\n Player score: ${playerScore} \n Computer score: ${computerScore} \n\n You lose! \n\n Press F5 to try again!`)
         }
     }
 
