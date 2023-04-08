@@ -63,10 +63,10 @@ function game() {
         }
 
         if (playerSelection == 'scissors') {
-            if (computerSelection == 'rock') {
+            if (computerSelection == 'scissors') {
                 console.log('Computer: draw')
                 console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
-            } else if (computerSelection == 'scissors') {
+            } else if (computerSelection == 'paper') {
                 console.log('Computer: I lose, you win')
                 playerScore += 1;
                 console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
@@ -78,10 +78,10 @@ function game() {
         }
 
         if (playerSelection == 'paper') {
-            if (computerSelection == 'rock') {
+            if (computerSelection == 'paper') {
                 console.log('Computer: draw')
                 console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
-            } else if (computerSelection == 'scissors') {
+            } else if (computerSelection == 'rock') {
                 console.log('Computer: I lose, you win')
                 playerScore += 1;
                 console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
@@ -107,7 +107,8 @@ function game() {
         console.log(`Computer score: ${computerScore}`)
 
         if (playerScore > computerScore) {
-            return console.log(`Congratulations! Player won!`);
+             console.log(`Congratulations! Player won!`);
+            return console.log(`press F5 to try again!`);
         } else if (playerScore == computerScore) {
             return console.log(`It's a draw! Press F5 try again!`);
         } else {
