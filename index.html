@@ -3,11 +3,39 @@
     <head>
         <meta charset="utf-8">
         <title>"RockPaperScissors"</title>
-        <script src="script.js"></script>
+        <script src="script.js" defer></script>
+        <link rel="stylesheet" href="./stage1.css">
     </head>
     <body>
-        <p>Go to console to play the game.</p>
-        <p> </p>
-        <p>Right click >> "Inspect" >> go to "console" pane</p>
+      <header>     
+        <nav>
+          <a href="./index.html">projectrps</a>
+        </nav>
+      </header>
+      <!--UI contains start game button, and player's choice-->
+      <div id = ui> 
+        <button id = gameStart>Start Game</button>
+        <!--scoreContainer contains player and computer's ui-->
+        <div id = scoreContainer>
+           <div id = playerSide>
+            <p>Player</p>
+            <div id = playerImage>image container</div>
+            <div id = playerScore>0</div>
+           </div>
+           <div id = computerSide>
+            <p>Computer</p>
+            <div id = computerImage>image container</div>
+            <div id = computerScore>0</div>
+           </div>
+        </div>
+        <div id = choiceContainer>
+          <button id = paper>Paper</button>
+          <button id = rock>Rock</button>
+          <button id = scissors>Scissors</button> 
+        </div>
+      </div>
+      <footer>
+        
+      </footer>
     </body>
 </html>

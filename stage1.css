@@ -1,0 +1,42 @@
+div {
+    border: solid 1px black;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+p {
+    border: solid 1px black;
+}
+
+#scoreContainer {
+    display: flex;
+    height: auto;
+    justify-content: space-evenly;
+    width: 500px;
+}
+
+#ui {
+    display: flex;
+    height: 200px;
+    flex-direction: column;
+    align-items: center;
+    align-content: space-between;
+    justify-content: space-evenly;
+}
+
+#choiceContainer {
+    border: solid 1px black;
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    
+
+}

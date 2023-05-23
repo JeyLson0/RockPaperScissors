@@ -1,33 +1,79 @@
 console.log(`Let's play Rock, Paper, Scissors!`);
 console.log(`Type game() to play`)
-let playerSelection;                                               /*This will contain player's choice */
-let computerSelection;                                             /*This will contain computer's choice */
+//This will contain player's choice
+let playerSelection;      
+//This will contain computer's choice                                         
+let computerSelection;                                             
 let playerScore = 0;
 let computerScore = 0;
-let gameLoop = 1;
+let gameLoop = 0;
 
-game()
+//start game button, hides underlying ui (scoreContainer, choice container)
+const startGame = document.querySelector('#gameStart');
+const choiceDiv = document.querySelector('#choiceContainer')
+const divUi = document.querySelector('#ui');
+const scoreDiv = document.querySelector('#scoreContainer')
+const gameRound = document.querySelector('#round'); 
+divUi.removeChild(choiceDiv)
+divUi.removeChild(scoreDiv)
+startGame.addEventListener('click', (e) => {
+    divUi.removeChild(startGame);
+    divUi.appendChild(scoreDiv);
+    divUi.appendChild(choiceDiv);
+    game();
+}) 
 
+
+
+//Rock, Paper, Scissor Functions
+const rock = choiceDiv.querySelector('#rock');
+rock.addEventListener('click', (e) => {
+    playerSelection = e.target.id
+    console.log(playerSelection)
+    game();
+})
+
+const paper = choiceDiv.querySelector('#paper')
+paper.addEventListener('click', (e) => {
+    playerSelection = e.target.id
+    console.log(playerSelection)
+    game();
+})
+
+const scissors = choiceDiv.querySelector('#scissors')
+scissors.addEventListener('click', (e) => {
+    playerSelection = e.target.id
+    console.log(playerSelection)
+    game();
+} )  
+
+
+//game function
 function game() {
-
-    getPlayerChoice();
-    function getPlayerChoice() {                                       
-        playerSelection = prompt(`Round ${gameLoop}:   Rock, Paper, Scissors`);             /* ask user's input */
-        if (playerSelection == null) {
-            console.log(`type: game() to play the game.`)
-            gameLoop = gameLoop -1;
+             
+    //Game only loops 5 times. 
+    if (gameLoop < 5) {
+        gameLoop += 1;
+        if (gameLoop < 5){
+            console.log(`Round ${gameLoop}`)
         } else {
-            playerSelection = playerSelection.toLowerCase();
-                if (playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors" && playerSelection != String) { /* if statement whether a user did not put the rock, paper, scissors */
-                getPlayerChoice();
-            }   else {
-                getComputerChoice();
-            } 
-        }    
+            console.log(`Last round!`)
+        } 
+    } else {
+        if (playerScore > computerScore) {
+            return console.log(`GAME END. \n\n Player score: ${playerScore} \n Computer score: ${computerScore} \n\n Congratulations! Player won! \n\n Press F5 to try again!`) 
+        } else if (playerScore == computerScore) {
+            return console.log(`GAME END. \n\n Player score: ${playerScore} \n Computer score: ${computerScore} \n\n It's a draw! \n\n Press F5 to try again!`)
+        } else {
+            return console.log(`GAME END. \n\n Player score: ${playerScore} \n Computer score: ${computerScore} \n\n You lose! \n\n Press F5 to try again!`)
+        }
     }
 
-    function getComputerChoice() {                                  /* function that returns a random value of the computer */
-        computerSelection = Math.floor(Math.random() * 3);          /* Math.random() function returns floating numbers between 0 and 1. Math.floor() function turn floating number into whole numbers */
+    console.log(`Rock, paper, scissors`)
+
+    //get computer choice function
+    function getComputerChoice() {                                 
+        computerSelection = Math.floor(Math.random() * 3);         
         
         if (computerSelection === 0) {
             computerSelection = 'rock';
@@ -43,71 +89,62 @@ function game() {
         }
     }
 
-    function playRound(playerSelection, computerSelection) {                            /*playRound function has two parameters. the input from playerChoice assigned a value on playerSelection. the same goes for computerChoice it creates a random value and place it on computerSelection.  */
+    getComputerChoice();
+
+    //playRound() compares player's choice to the computer's choice
+    function playRound(playerSelection, computerSelection) { 
         if (playerSelection == 'rock') {
             if (computerSelection == 'rock') {
-                window.alert(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n DRAW!`)
-                window.alert(`Player: ${playerScore} vs Computer: ${computerScore}`)
+                console.log(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n DRAW!`)
+                console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
             } else if (computerSelection == 'scissors') {
-                window.alert(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n YOU WIN!`)
+                console.log(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n YOU WIN!`)
                 playerScore += 1;
-                window.alert(`Player: ${playerScore} vs Computer: ${computerScore}`)
+                console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
             } else {
-                window.alert(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n YOU LOSE!`)
+                console.log(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n YOU LOSE!`)
                 computerScore += 1;
-                window.alert(`Player: ${playerScore} vs Computer: ${computerScore}`)
+                console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
             }
         }
 
         if (playerSelection == 'scissors') {
             if (computerSelection == 'scissors') {
-                window.alert(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n DRAW!`)
-                window.alert(`Player: ${playerScore} vs Computer: ${computerScore}`)
+                console.log(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n DRAW!`)
+                console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
             } else if (computerSelection == 'paper') {
-                window.alert(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n YOU WIN!`)
+                console.log(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n YOU WIN!`)
                 playerScore += 1;
-                window.alert(`Player: ${playerScore} vs Computer: ${computerScore}`)
+                console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
             } else {
-                window.alert(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n YOU LOSE!`)
+                console.log(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n YOU LOSE!`)
                 computerScore += 1;
-                window.alert(`Player: ${playerScore} vs Computer: ${computerScore}`)
+                console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
             }
         }
 
         if (playerSelection == 'paper') {
             if (computerSelection == 'paper') {
-                window.alert(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n DRAW!`)
-                window.alert(`Player: ${playerScore} vs Computer: ${computerScore}`)
+                console.log(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n DRAW!`)
+                console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
             } else if (computerSelection == 'rock') {
-                window.alert(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n YOU WIN!`)
+                console.log(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n YOU WIN!`)
                 playerScore += 1;
-                window.alert(`Player: ${playerScore} vs Computer: ${computerScore}`)
+                console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
             } else {
-                window.alert(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n YOU LOSE!`)
+                console.log(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n YOU LOSE!`)
                 computerScore += 1;
-                window.alert(`Player: ${playerScore} vs Computer: ${computerScore}`)
+                console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
             }
         }
 
     }
     
-    if (gameLoop < 5) {
-        gameLoop += 1;
-        if (gameLoop < 5){
-            window.alert(`Round ${gameLoop}`)
-            game()
-        } else {
-            window.alert(`Last round!`)
-            game()
-        } 
-    } else {
-        if (playerScore > computerScore) {
-            window.alert(`GAME END. \n\n Player score: ${playerScore} \n Computer score: ${computerScore} \n\n Congratulations! Player won! \n\n Press F5 to try again!`) 
-        } else if (playerScore == computerScore) {
-            window.alert(`GAME END. \n\n Player score: ${playerScore} \n Computer score: ${computerScore} \n\n It's a draw! \n\n Press F5 to try again!`)
-        } else {
-            window.alert(`GAME END. \n\n Player score: ${playerScore} \n Computer score: ${computerScore} \n\n You lose! \n\n Press F5 to try again!`)
-        }
-    }
+//player and computer score
+const scorePlayer = scoreDiv.querySelector('#playerScore');
+const scoreComputer = scoreDiv.querySelector('#computerScore')
+scorePlayer.textContent = `${playerScore}`;
+scoreComputer.textContent = `${computerScore}`;
 
 }
+
