@@ -16,24 +16,38 @@
       <div id = ui> 
         <button id = gameStart>Start Game</button>
         <!--scoreContainer contains player and computer's ui-->
-        <div id = scoreContainer>
+        <div id = round></div>
+        <div id = playerComputerDiv>
            <div id = playerSide>
             <p>Player</p>
-            <div id = playerImage>image container</div>
+            <img id = "playerEmo" src = "">
             <div id = playerScore>0</div>
+            <img id = "playerChoiceImg" src = "" style="max-width: 50%; height: auto;">
            </div>
            <div id = computerSide>
             <p>Computer</p>
-            <div id = computerImage>image container</div>
+            <img id = "computerEmo" src = "" style="transform: scaleX(-1);">
             <div id = computerScore>0</div>
+            <img id = "compChoiceImg" src = "" style="max-width: 50%; height: auto;">
            </div>
         </div>
         <div id = choiceContainer>
-          <button id = paper>Paper</button>
-          <button id = rock>Rock</button>
-          <button id = scissors>Scissors</button> 
+          <div><img id = rock src="svg/Rock.svg" alt="rock" ></div>
+          <div><img id = paper src="svg/Paper.svg" alt="paper" ></div>
+          <div><img id = scissors src="svg/Scissors.svg" alt="scissors"></div>
         </div>
       </div>
+      
+      <!--learn how to rescale, make sure white borders are not in place, readjust canva?-->
+      <img src="svg/noScoreEmo.svg" alt="noScoreEmo" style="display: none;">
+      <img src="svg/thinkingEmo.svg" alt="thinkingEmo" style="display: none;">
+      <img src="svg/scoreEmo.svg" alt="scoreEmo" style="display: none;">
+      <img src="svg/loseEmo.svg" alt="lose" style="display: none;">
+      <img src="svg/winEmo.svg" alt="win" style="display: none;">
+      <img src="svg/Paper.svg" alt="paper" style="display: none;">
+      <img src="svg/Rock.svg" alt="rock" style="display: none;">
+      <img src="svg/Scissors.svg" alt="scissors" style="display: none;">
+
       <footer>
         
       </footer>
