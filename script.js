@@ -17,7 +17,7 @@ const gameRound = document.querySelector('#round');
 divUi.removeChild(choiceDiv)
 divUi.removeChild(scoreDiv)
 divUi.removeChild(gameRound)
-startGame.addEventListener('click', (e) => {
+startGame.addEventListener('click', function newGame (e) {
     divUi.removeChild(startGame);
     divUi.appendChild(gameRound);
     divUi.appendChild(scoreDiv);
@@ -88,20 +88,14 @@ function playRound(playerSelection, computerSelection) {
         if (computerSelection == 'rock') {
             document.getElementById("playerEmo").src = "svg/thinkingEmo.svg";
             document.getElementById("computerEmo").src = "svg/thinkingEmo.svg";
-            console.log(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n DRAW!`)
-            console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
         } else if (computerSelection == 'scissors') {
             document.getElementById("playerEmo").src = "svg/scoreEmo.svg";
             document.getElementById("computerEmo").src = "svg/noScoreEmo.svg";
-            console.log(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n YOU WIN!`)
             playerScore += 1;
-            console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
         } else {
             document.getElementById("playerEmo").src = "svg/noScoreEmo.svg";
             document.getElementById("computerEmo").src = "svg/scoreEmo.svg";
-            console.log(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n YOU LOSE!`)
             computerScore += 1;
-            console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
         }
     }
 
@@ -109,20 +103,14 @@ function playRound(playerSelection, computerSelection) {
         if (computerSelection == 'scissors') {
             document.getElementById("playerEmo").src = "svg/thinkingEmo.svg";
             document.getElementById("computerEmo").src = "svg/thinkingEmo.svg";
-            console.log(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n DRAW!`)
-            console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
         } else if (computerSelection == 'paper') {
             document.getElementById("playerEmo").src = "svg/scoreEmo.svg";
             document.getElementById("computerEmo").src = "svg/noScoreEmo.svg";
-            console.log(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n YOU WIN!`)
             playerScore += 1;
-            console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
         } else {
             document.getElementById("playerEmo").src = "svg/noScoreEmo.svg";
             document.getElementById("computerEmo").src = "svg/scoreEmo.svg";
-            console.log(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n YOU LOSE!`)
             computerScore += 1;
-            console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
         }
     }
 
@@ -130,20 +118,14 @@ function playRound(playerSelection, computerSelection) {
         if (computerSelection == 'paper') {
             document.getElementById("playerEmo").src = "svg/thinkingEmo.svg";
             document.getElementById("computerEmo").src = "svg/thinkingEmo.svg";
-            console.log(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n DRAW!`)
-            console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
         } else if (computerSelection == 'rock') {
             document.getElementById("playerEmo").src = "svg/scoreEmo.svg";
             document.getElementById("computerEmo").src = "svg/noScoreEmo.svg";
-            console.log(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n YOU WIN!`)
             playerScore += 1;
-            console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
         } else {
             document.getElementById("playerEmo").src = "svg/noScoreEmo.svg";
             document.getElementById("computerEmo").src = "svg/scoreEmo.svg";
-            console.log(`You picked ${playerSelection} \n\n Computer: I choose ${computerSelection} \n\n YOU LOSE!`)
             computerScore += 1;
-            console.log(`Player: ${playerScore} vs Computer: ${computerScore}`)
         }
     }
     
@@ -151,24 +133,77 @@ function playRound(playerSelection, computerSelection) {
 
 //game() is the round loop
 function game() {
-             
-    //Game only loops 5 times. 
+
+    const retry = document.createElement('button');
+    const gameResult = document.querySelector('#result');
+
+    //Game only loops 5 times. \
     if (gameLoop < 5) {
         gameLoop += 1;
         if (gameLoop < 5){
             gameRound.textContent = `Round ${gameLoop}`
-            console.log(`Round ${gameLoop}`)
+           
         } else {
             gameRound.textContent = `Last round!`
-            console.log(`Last round!`)
         } 
     } else {
         if (playerScore > computerScore) {
-            return console.log(`GAME END. \n\n Player score: ${playerScore} \n Computer score: ${computerScore} \n\n Congratulations! Player won! \n\n Press F5 to try again!`) 
+            document.getElementById('playerEmo').src = "svg/winEmo.svg";
+            document.getElementById("computerEmo").src = "svg/loseEmo.svg";
+            gameRound.textContent = `GAME END \n ` 
+            divUi.removeChild(choiceDiv)
+            divUi.appendChild(retry);
+            retry.textContent = 'Try Again'
+            retry.addEventListener('click', (e) => {
+                playerScore = 0;
+                computerScore = 0;
+                gameLoop = 0;
+                document.getElementById("playerEmo").src = "svg/thinkingEmo.svg";
+                document.getElementById("computerEmo").src = "svg/thinkingEmo.svg";
+                document.getElementById("playerChoiceImg").src = "svg/cloudThinkingEmo.svg";
+                document.getElementById("compChoiceImg").src = "svg/cloudThinkingEmo.svg";
+                divUi.removeChild(retry);
+                divUi.appendChild(choiceDiv);
+                game();
+            })
         } else if (playerScore == computerScore) {
-            return console.log(`GAME END. \n\n Player score: ${playerScore} \n Computer score: ${computerScore} \n\n It's a draw! \n\n Press F5 to try again!`)
+            document.getElementById('playerEmo').src = "svg/thinkingEmo.svg";
+            document.getElementById("computerEmo").src = "svg/thinkingEmo.svg";
+            gameRound.textContent = `GAME END \n Player score: ${playerScore} Computer score: ${computerScore}` 
+            divUi.removeChild(choiceDiv)
+            divUi.appendChild(retry);
+            retry.textContent = 'Try Again'
+            retry.addEventListener('click', (e) => {
+                playerScore = 0;
+                computerScore = 0;
+                gameLoop = 0;
+                document.getElementById("playerEmo").src = "svg/thinkingEmo.svg";
+                document.getElementById("computerEmo").src = "svg/thinkingEmo.svg";
+                document.getElementById("playerChoiceImg").src = "svg/cloudThinkingEmo.svg";
+                document.getElementById("compChoiceImg").src = "svg/cloudThinkingEmo.svg";
+                divUi.removeChild(retry);
+                divUi.appendChild(choiceDiv);
+                game();
+            })
         } else {
-            return console.log(`GAME END. \n\n Player score: ${playerScore} \n Computer score: ${computerScore} \n\n You lose! \n\n Press F5 to try again!`)
+            document.getElementById('playerEmo').src = "svg/loseEmo.svg";
+            document.getElementById("computerEmo").src = "svg/winEmo.svg";
+            gameRound.textContent = `GAME END \n Player score: ${playerScore} Computer score: ${computerScore}`  
+            divUi.removeChild(choiceDiv)     
+            divUi.appendChild(retry);
+            retry.textContent = 'Try Again'
+            retry.addEventListener('click', (e) => {
+                playerScore = 0;
+                computerScore = 0;
+                gameLoop = 0;
+                document.getElementById("playerEmo").src = "svg/thinkingEmo.svg";
+                document.getElementById("computerEmo").src = "svg/thinkingEmo.svg";
+                document.getElementById("playerChoiceImg").src = "svg/cloudThinkingEmo.svg";
+                document.getElementById("compChoiceImg").src = "svg/cloudThinkingEmo.svg";
+                divUi.removeChild(retry);
+                divUi.appendChild(choiceDiv);
+                game();
+            })
         }
     }
     
@@ -177,6 +212,5 @@ const scorePlayer = scoreDiv.querySelector('#playerScore');
 const scoreComputer = scoreDiv.querySelector('#computerScore')
 scorePlayer.textContent = `${playerScore}`;
 scoreComputer.textContent = `${computerScore}`;
-
 }
 
