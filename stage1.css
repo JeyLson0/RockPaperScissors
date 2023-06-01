@@ -1,10 +1,17 @@
-div {
-    border: solid 1px black;
+html,
+button {
+    font-family:  'Gloria Hallelujah', cursive, Arial, Helvetica, sans-serif;
 }
+
+body {
+    background-color: #e6ceb0;
+}
+
 
 nav {
     display: flex;
     justify-content: center;
+    font-size: 80px;
 }
 
 a {
@@ -12,41 +19,65 @@ a {
     color: black;
 }
 
-p {
-    border: solid 1px black;
+#gameStart {
+    font-size: 40px;
+    margin: 100px;
 }
+
+#round {
+    font-size: 50px;
+}
+
 
 #playerComputerDiv {
     display: flex;
     height: auto;
-    width: 500px;
-    gap: 50px;
+    width: 600px;
+    gap: 100px;
     justify-content: space-evenly;
     align-self: center;
 }
 
-#ui {
+.scoreBoard {
     display: flex;
-    height: auto;
-    padding: 100px;
-    gap: 100px;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    gap: 20px;
+    font-size: 30px;
+}
+
+#ui {
+    display: flex;
+    height: 100vh;
+    width: auto;
+    padding: 50px;
+    flex-direction: column;
+    align-items: center;
 }
 
 #choiceContainer {
-    border: solid 1px black;
-    gap: 20px;
+    gap: 10px;
     display: flex;
+    border: solid;
     justify-content: space-between;
-    
+    padding: 20px 10px;
+    margin-top: 50px;
+}
+
+#result {
+    font-size: 70px;
+    margin: 40px;
 }
 
 img {
     width: auto;
     padding: none;
-    border: solid;
     height: 200px;
-    
+}
+
+
+
+.borderBottom {
+    border-bottom: solid;
 }

@@ -1,5 +1,3 @@
-console.log(`Let's play Rock, Paper, Scissors!`);
-console.log(`Type game() to play`)
 //This will contain player's choice
 let playerSelection;      
 //This will contain computer's choice                                         
@@ -14,12 +12,15 @@ const choiceDiv = document.querySelector('#choiceContainer')
 const divUi = document.querySelector('#ui');
 const scoreDiv = document.querySelector('#playerComputerDiv')
 const gameRound = document.querySelector('#round'); 
+const gameResult = document.querySelector('#result');
+divUi.removeChild(gameResult)
 divUi.removeChild(choiceDiv)
 divUi.removeChild(scoreDiv)
 divUi.removeChild(gameRound)
 startGame.addEventListener('click', function newGame (e) {
     divUi.removeChild(startGame);
     divUi.appendChild(gameRound);
+    
     divUi.appendChild(scoreDiv);
     divUi.appendChild(choiceDiv);
     document.getElementById("playerEmo").src = "svg/thinkingEmo.svg";
@@ -35,7 +36,6 @@ startGame.addEventListener('click', function newGame (e) {
 const rock = choiceDiv.querySelector('#rock');
 rock.addEventListener('click', (e) => {
     playerSelection = e.target.id
-    console.log(playerSelection)
     document.getElementById("playerChoiceImg").src = "svg/Rock.svg";
     document.getElementById("compChoiceImg").src = "svg/Rock.svg";
     getComputerChoice();
@@ -46,7 +46,6 @@ rock.addEventListener('click', (e) => {
 const paper = choiceDiv.querySelector('#paper')
 paper.addEventListener('click', (e) => {
     playerSelection = e.target.id
-    console.log(playerSelection)
     document.getElementById("playerChoiceImg").src = "svg/Paper.svg";
     getComputerChoice();
     playRound(playerSelection, computerSelection)
@@ -56,13 +55,13 @@ paper.addEventListener('click', (e) => {
 const scissors = choiceDiv.querySelector('#scissors')
 scissors.addEventListener('click', (e) => {
     playerSelection = e.target.id
-    console.log(playerSelection)
     document.getElementById("playerChoiceImg").src = "svg/Scissors.svg";
     getComputerChoice();
     playRound(playerSelection, computerSelection)
     game();
 } )  
 
+//Computer choice
 function getComputerChoice() {                                 
     computerSelection = Math.floor(Math.random() * 3);         
     
@@ -80,53 +79,87 @@ function getComputerChoice() {
     }
 }
 
-//Playround function
+//Loop function
 function playRound(playerSelection, computerSelection) {
         
     
     if (playerSelection == 'rock') {
-        if (computerSelection == 'rock') {
-            document.getElementById("playerEmo").src = "svg/thinkingEmo.svg";
-            document.getElementById("computerEmo").src = "svg/thinkingEmo.svg";
-        } else if (computerSelection == 'scissors') {
-            document.getElementById("playerEmo").src = "svg/scoreEmo.svg";
-            document.getElementById("computerEmo").src = "svg/noScoreEmo.svg";
-            playerScore += 1;
+        if (gameLoop < 5) {
+            if (computerSelection == 'rock') {
+                document.getElementById("playerEmo").src = "svg/thinkingEmo.svg";
+                document.getElementById("computerEmo").src = "svg/thinkingEmo.svg";
+            } else if (computerSelection == 'scissors') {
+                document.getElementById("playerEmo").src = "svg/scoreEmo.svg";
+                document.getElementById("computerEmo").src = "svg/noScoreEmo.svg";
+                playerScore += 1;
+            } else {
+                document.getElementById("playerEmo").src = "svg/noScoreEmo.svg";
+                document.getElementById("computerEmo").src = "svg/scoreEmo.svg";
+                computerScore += 1;
+            }
         } else {
-            document.getElementById("playerEmo").src = "svg/noScoreEmo.svg";
-            document.getElementById("computerEmo").src = "svg/scoreEmo.svg";
-            computerScore += 1;
+            if (computerSelection == 'rock') {
+                return;
+            } else if (computerSelection == 'scissors') {
+                playerScore += 1;
+            } else {
+                computerScore += 1;
+            }
+
         }
     }
 
     if (playerSelection == 'scissors') {
-        if (computerSelection == 'scissors') {
-            document.getElementById("playerEmo").src = "svg/thinkingEmo.svg";
-            document.getElementById("computerEmo").src = "svg/thinkingEmo.svg";
-        } else if (computerSelection == 'paper') {
-            document.getElementById("playerEmo").src = "svg/scoreEmo.svg";
-            document.getElementById("computerEmo").src = "svg/noScoreEmo.svg";
-            playerScore += 1;
+        if (gameLoop < 5) {
+            if (computerSelection == 'scissors') {
+                document.getElementById("playerEmo").src = "svg/thinkingEmo.svg";
+                document.getElementById("computerEmo").src = "svg/thinkingEmo.svg";
+            } else if (computerSelection == 'paper') {
+                document.getElementById("playerEmo").src = "svg/scoreEmo.svg";
+                document.getElementById("computerEmo").src = "svg/noScoreEmo.svg";
+                playerScore += 1;
+            } else {
+                document.getElementById("playerEmo").src = "svg/noScoreEmo.svg";
+                document.getElementById("computerEmo").src = "svg/scoreEmo.svg";
+                computerScore += 1;
+            }
         } else {
-            document.getElementById("playerEmo").src = "svg/noScoreEmo.svg";
-            document.getElementById("computerEmo").src = "svg/scoreEmo.svg";
-            computerScore += 1;
+            if (computerSelection == 'scissors') {
+                return;
+            } else if (computerSelection == 'paper') {
+                playerScore += 1;
+            } else {
+                computerScore += 1;
+            }
+
         }
     }
 
     if (playerSelection == 'paper') {
-        if (computerSelection == 'paper') {
-            document.getElementById("playerEmo").src = "svg/thinkingEmo.svg";
-            document.getElementById("computerEmo").src = "svg/thinkingEmo.svg";
-        } else if (computerSelection == 'rock') {
-            document.getElementById("playerEmo").src = "svg/scoreEmo.svg";
-            document.getElementById("computerEmo").src = "svg/noScoreEmo.svg";
-            playerScore += 1;
+        if (gameLoop < 5) {
+            if (computerSelection == 'paper') {
+                document.getElementById("playerEmo").src = "svg/thinkingEmo.svg";
+                document.getElementById("computerEmo").src = "svg/thinkingEmo.svg";
+            } else if (computerSelection == 'rock') {
+                document.getElementById("playerEmo").src = "svg/scoreEmo.svg";
+                document.getElementById("computerEmo").src = "svg/noScoreEmo.svg";
+                playerScore += 1;
+            } else {
+                document.getElementById("playerEmo").src = "svg/noScoreEmo.svg";
+                document.getElementById("computerEmo").src = "svg/scoreEmo.svg";
+                computerScore += 1;
+            }
         } else {
-            document.getElementById("playerEmo").src = "svg/noScoreEmo.svg";
-            document.getElementById("computerEmo").src = "svg/scoreEmo.svg";
-            computerScore += 1;
+            if (computerSelection == 'paper') {
+                return;
+            } else if (computerSelection == 'rock') {
+                playerScore += 1;
+            } else {
+                computerScore += 1;
+            }
+
         }
+       
     }
     
 }
@@ -135,7 +168,8 @@ function playRound(playerSelection, computerSelection) {
 function game() {
 
     const retry = document.createElement('button');
-    const gameResult = document.querySelector('#result');
+    retry.setAttribute('style', 'font-size: 35px')
+    
 
     //Game only loops 5 times. \
     if (gameLoop < 5) {
@@ -148,12 +182,14 @@ function game() {
         } 
     } else {
         if (playerScore > computerScore) {
+            gameRound.textContent = `GAME END` ;
+            divUi.appendChild(gameResult);
+            gameResult.textContent = `You Win!`;
             document.getElementById('playerEmo').src = "svg/winEmo.svg";
             document.getElementById("computerEmo").src = "svg/loseEmo.svg";
-            gameRound.textContent = `GAME END \n ` 
-            divUi.removeChild(choiceDiv)
+            divUi.removeChild(choiceDiv);
             divUi.appendChild(retry);
-            retry.textContent = 'Try Again'
+            retry.textContent = `Try Again`;
             retry.addEventListener('click', (e) => {
                 playerScore = 0;
                 computerScore = 0;
@@ -163,16 +199,20 @@ function game() {
                 document.getElementById("playerChoiceImg").src = "svg/cloudThinkingEmo.svg";
                 document.getElementById("compChoiceImg").src = "svg/cloudThinkingEmo.svg";
                 divUi.removeChild(retry);
+                divUi.removeChild(gameResult);
                 divUi.appendChild(choiceDiv);
                 game();
-            })
+            });
+            
         } else if (playerScore == computerScore) {
+            gameRound.textContent = `GAME END` ;
+            divUi.appendChild(gameResult);
+            gameResult.textContent = `It's a draw!`;
             document.getElementById('playerEmo').src = "svg/thinkingEmo.svg";
             document.getElementById("computerEmo").src = "svg/thinkingEmo.svg";
-            gameRound.textContent = `GAME END \n Player score: ${playerScore} Computer score: ${computerScore}` 
-            divUi.removeChild(choiceDiv)
+            divUi.removeChild(choiceDiv);
             divUi.appendChild(retry);
-            retry.textContent = 'Try Again'
+            retry.textContent = `Try Again`;
             retry.addEventListener('click', (e) => {
                 playerScore = 0;
                 computerScore = 0;
@@ -182,16 +222,20 @@ function game() {
                 document.getElementById("playerChoiceImg").src = "svg/cloudThinkingEmo.svg";
                 document.getElementById("compChoiceImg").src = "svg/cloudThinkingEmo.svg";
                 divUi.removeChild(retry);
+                divUi.removeChild(gameResult);
                 divUi.appendChild(choiceDiv);
                 game();
-            })
+            });
+       
         } else {
+            gameRound.textContent = `GAME END` ;
+            divUi.appendChild(gameResult);
+            gameResult.textContent = `You Lose.`;
             document.getElementById('playerEmo').src = "svg/loseEmo.svg";
             document.getElementById("computerEmo").src = "svg/winEmo.svg";
-            gameRound.textContent = `GAME END \n Player score: ${playerScore} Computer score: ${computerScore}`  
-            divUi.removeChild(choiceDiv)     
+            divUi.removeChild(choiceDiv);
             divUi.appendChild(retry);
-            retry.textContent = 'Try Again'
+            retry.textContent = `Try Again`;
             retry.addEventListener('click', (e) => {
                 playerScore = 0;
                 computerScore = 0;
@@ -201,16 +245,18 @@ function game() {
                 document.getElementById("playerChoiceImg").src = "svg/cloudThinkingEmo.svg";
                 document.getElementById("compChoiceImg").src = "svg/cloudThinkingEmo.svg";
                 divUi.removeChild(retry);
+                divUi.removeChild(gameResult);
                 divUi.appendChild(choiceDiv);
                 game();
-            })
+            });
         }
+
     }
     
-//player and computer score
-const scorePlayer = scoreDiv.querySelector('#playerScore');
-const scoreComputer = scoreDiv.querySelector('#computerScore')
-scorePlayer.textContent = `${playerScore}`;
-scoreComputer.textContent = `${computerScore}`;
+    //player and computer score
+    const scorePlayer = scoreDiv.querySelector('#playerScore');
+    const scoreComputer = scoreDiv.querySelector('#computerScore')
+    scorePlayer.textContent = `${playerScore}`;
+    scoreComputer.textContent = `${computerScore}`;
 }
 
