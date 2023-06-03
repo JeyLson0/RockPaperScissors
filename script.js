@@ -5,6 +5,7 @@ let computerSelection;
 let playerScore = 0;
 let computerScore = 0;
 let gameLoop = 0;
+let audio = true;
 
 //start game button, hides underlying ui (scoreContainer, choice container)
 const startGame = document.querySelector('#gameStart');
@@ -13,21 +14,24 @@ const divUi = document.querySelector('#ui');
 const scoreDiv = document.querySelector('#playerComputerDiv')
 const gameRound = document.querySelector('#round'); 
 const gameResult = document.querySelector('#result');
-divUi.removeChild(gameResult)
-divUi.removeChild(choiceDiv)
-divUi.removeChild(scoreDiv)
-divUi.removeChild(gameRound)
+const musicDiv = document.querySelector('#musicContainer')
+divUi.removeChild(gameResult);
+divUi.removeChild(choiceDiv);
+divUi.removeChild(scoreDiv);
+divUi.removeChild(gameRound);
+divUi.removeChild(musicDiv);
 startGame.addEventListener('click', function newGame (e) {
     divUi.removeChild(startGame);
     divUi.appendChild(gameRound);
-    
     divUi.appendChild(scoreDiv);
     divUi.appendChild(choiceDiv);
+    divUi.appendChild(musicDiv);
     document.getElementById("playerEmo").src = "svg/thinkingEmo.svg";
     document.getElementById("computerEmo").src = "svg/thinkingEmo.svg";
     document.getElementById("playerChoiceImg").src = "svg/cloudThinkingEmo.svg";
     document.getElementById("compChoiceImg").src = "svg/cloudThinkingEmo.svg";
     game();
+    playAudio();
 }) 
 
 
@@ -259,4 +263,39 @@ function game() {
     scorePlayer.textContent = `${playerScore}`;
     scoreComputer.textContent = `${computerScore}`;
 }
+
+
+
+function playAudio() {
+    let gameMusic = document.getElementById('musicFile');
+    gameMusic.currentTime = 1;
+    gameMusic.volume = 0.1;
+    gameMusic.play()
+}
+
+function pauseAudio() {
+    let gameMusic = document.getElementById('musicFile');
+    gameMusic.pause();
+}
+
+const musicButton = musicDiv.querySelector('#musicButton');
+
+musicButton.addEventListener('click', () => {
+
+    if (audio == true) {
+        musicButton.src = "./assets/Music/musicOff.svg";
+        pauseAudio();
+        console.log(audio);
+        return audio = false;
+    }
+
+    if (audio == false) {
+        musicButton.src = "./assets/Music/musicOn.svg";
+        playAudio();
+        console.log(audio);
+        return audio = true;
+    }
+});
+
+
 
